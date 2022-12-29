@@ -1,0 +1,16 @@
+different of cloud => AWS, AZURE,GCP
+Deployed Date=>
+CEO=>
+JSON 
+{}
+[]
+,
+:
+""
+
+cloud formation -> create stak -> use sample templete -> parameters 
+
+vpc configuration ------inside file patameters ----add new parametes
+ 
+                        "vpc name": {
+                          

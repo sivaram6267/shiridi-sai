@@ -1,0 +1,36 @@
+resource "aws_instance" "ec2" {
+   ami                 = "${var.ami}"
+   instance_type       = "${var.ec2_class}"
+   key_name            =  demokey 
+   subnet_id           =  "${var.subnet_1a}"
+   vpc.security_group-ids = ["${aws_securit
+
+
+
+resource "aws_instance" "ec2" {
+   ami              = "ami-06a4468f4fdf9e25"
+   instance_type    = "t3.micro"
+
+
+    tage = {
+       Name  = "HelloWorld"
+    }
+}4 6 : 0 6 : 4 0  
+ 0 6  
+ 0 6 : 4 1 : 4 1  
+ s h i v a   h a s   s t a r t e d   u s i n g   t h i s   s c r i p t   a t   t h i s   p a r t i c u l a r   0 6 : 4 3 : 2 2    
+ PASSWORD LESS login between two EC2 instances || using SSH-KEYGEN || 2020
+
+scp /home/ec2-user/mohan.txt ec2-usr@10.12.15.01:/home/ec2-user/govinda
+
+two ec2 instance launch
+
+one instance indside generate ----ssh-keyegn 
+                                  copy id_rsa_pub past in second server cd .ssh 
+                                   past authorized host 
+                                   restart .sshd 
+                                   systemctl restart .sshd 
+
+
+HMwISI$%%388
+

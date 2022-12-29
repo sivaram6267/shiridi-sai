@@ -1,0 +1,31 @@
+FROM maven:3.6.3-jdk-11-slim AS MAVEN_TOOL_CHAIN
+COPY pom.xml /tmp/
+COPY src /tmp/src/
+WORKDIR /tmp/
+RUN mvn package
+RUN mkdir /opt/tomcat/
+WORKDIR /opt/tomcat
+ADD https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.54/bin/apache-tomcat-9.0.54.tar.gz /opt/tomcat
+RUN tar xvfz apache*.tar.gz
+RUN mv apache-tomcat-9.0.54/* /opt/tomcat 
+EXPOSE 8080
+CMD ["/opt/tomcat/bin/catalina.sh", "run"]
+
+----------------------------------------------------------------------------------------------------
+RUN groupadd tomcat
+RUN useradd -s /bin/false -g tomcat -d /opt/tomcat tomcat
+RUN cd /tmp
+RUN curl -O https://mirrors.estointernet.in/apache/tomcat/tomcat-8/v8.5.69/bin/apache-tomcat-8.5.69.tar.gz
+RUN mkdir /opt/tomcat
+RUN gzip -V
+RUN tar -xvzf apache-tomcat-8.5.69.tar.gz -C /opt/tomcat --strip-components=1
+RUN cd /opt/tomcat
+RUN chgrp -R tomcat /opt/tomcat
+ADD target/myapp.war /opt/tomcat/webapps
+#RUN chown -R tomcat conf/ webapps/ work/ temp/ logs/
+#RUN update-java-alternatives -l
+ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
+Run cd /opt/tomcat/bin
+expose 8080
+#CMD /opt/tomcat/bin/catalina.sh run && tail -f /opt/tomcat/logs/catalina.out
+CMD ["/opt/tomcat/bin/catalina.sh", "run"]

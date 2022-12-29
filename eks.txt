@@ -1,0 +1,67 @@
+
+
+
+1. Create IAM  role for EKS Cluster
+2. Create Dedicated VPCfor the EKS Clustr
+3. Create EKS Cluster
+4. Install & setup IAM Authenticator and Kubectl Utility 
+5.Create IAM Role for EKS Worker Nodes 
+6.Create Worker Nodes 
+7. Deploying Demo Application 
+
+
+
+
+
+Configure kubectl with EKS API Server credntial 
+
+   aws eks--region [EKS_Region] update-kubeconfig --name[EKS_Clustr_Name]
+       
+   aws eks --region us-west-2 update-kubeconfig --name EKS_K8S
+
+
+***** aws eks --region us-west-2 describe-cluster --name eks_new --query cluster.status 
+
+VALIDATE KUBECTL configuration to master node 
+  kubectl get svc
+
+aws eks --region us-west-2 update-kubeconfig EKS_K8S
+
+aws eks update-kubeconfig --region us-west-2 --name EKS_K8S
+
+M3/oj0m2LGLP8D8yM4kUrzdvJmV7LJ5uLalXvbbj
+
+
+
+
+
+
+export region_code=us-west-2
+export cluster_name= EKS_K8S
+export account_id= AKIASRJYSJA2K6HVZLEO
+
+
+
+cluster_endpoint=$(aws eks describe-cluster \
+    --region $us-west-2 \
+    --name $EKS_K8S \
+    --query "https://64EFA0DCF8C810E0F0EF5542B2F73904.gr7.us-west-2.eks.amazonaws.com" \
+    --output text)
+
+AKIASRJYSJA2K6HVZLEO
+M3/oj0m2LGLP8D8yM4kUrzdvJmV7LJ5uLalXvbbj
+
+
+
+aws eks update-kubeconfig --name eks_new -name --region us-west-2
+
+ aws eks update-kubeconfig --name eks_new --region us-west-2
+
+kubectl edit configmap aws-auth -n kube-system
+------------------------------------------------------
+ "Arn": "arn:aws:iam::174601685044:user/123"
+
+aws eks update-kubeconfig --name eks-cluster-name --region aws-region --role-arn  "arn:aws:iam::174601685044:user/123"
+
+AKIASRJYSJA2MM76GH6S
+nZXIU0BvX7InCs8T4RzCb7UygxEdkxfCgnoBcXr2

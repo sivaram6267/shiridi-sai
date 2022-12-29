@@ -1,0 +1,86 @@
+1  cd /
+    2  cleart
+    3  clear
+    4  cd war-zone123/
+    5  ls
+    6  mvn install
+    7  cd /
+    8  mvn -version
+    9  cd /
+   10  clear
+   11  cd opt/
+   12  ls
+   13  cd apache-maven-3.8.6/
+   14  ls 
+   15  pwd
+   16  cd /
+   17  export M2_HOME="/opt/apache-maven-3.8.6"
+   18  export PATH=$M2_HOME/bin:$PATH
+   19  mvn --version
+   20  cd war-zone123/
+   21  ls
+   22  mv
+ 22  mvn install
+   23  ls
+   24  cd target/
+   25  ls
+   26  cd /
+   27  c opt/
+   28  cd opt/
+   29  wget https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.81/bin/apache-tomcat-8.5.81.tar.gz
+   30  ls
+   31  tar -xzvf apache-tomcat-8.5.81.tar.gz 
+   32  ls
+   33  mv apache-tomcat-8.5.81 tomcat
+   34  rm -rf apache-tomcat-8.5.81.tar.gz 
+   35  rm -rf apache-maven-3.8.6
+   36  ls
+   37  tar -xzvf apache-maven-3.8.6-bin.tar.gz 
+   38  ls
+   39  rm -rf apache-maven-3.8.6-bin.tar.gz 
+   40  ls
+   41  cd /
+   42  mvn --bversion
+   43  mvn --version
+   44  clear
+   45  ls
+   46  cd
+  47  cd tomcat/
+   48  ls
+   49  cd bin/
+   50  ./shutdown.sh 
+   51  ./startup.sh 
+   52  cd c
+   53  cd ..
+   54  cd conf/
+   55  vi tomcat-users.xml 
+   56  cd ..
+   57  cd webapps/
+   58  cd manager/
+   59  cd META-INF/ 77  cd war-zone123/
+   60  vi context.xml 
+   61  cd /
+   62  cd opt/tomcat/
+   63  cd bin/
+   64  ./shutdown.sh 
+   65  ./startup.sh 
+   66  cd /
+   67  clear
+   68  cd war-zone123/
+   69  cd target/
+   70  ls
+   71  cp employee-0.0.1-SNAPSHOT.war /opt/tomcat/webapps/
+   72  cd /
+   73  clear
+   74  cd opt/tomcat/webapps/
+   75  ls
+   76  cd /
+   77  cd war-zone123/
+   78  cd target/
+   79  ls
+   80  cp employee-0.0.1-SNAPSHOT /opt/tomcat/webapps/
+   81  cd /
+   82  cd opt/tomcat/w
+   83  cd opt/tomcat/webapps/
+   84  ls
+   85  history

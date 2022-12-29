@@ -1,0 +1,74 @@
+docker images push into the docker hub 
+
+
+docker tag local-image:tagname new-repo:tagname
+docker push new-repo:tagname
+
+
+
+
+----------------------------------
+docker push sivaram6267/project:tagname
+
+
+-----------------------
+https://github.com/maha4ntvc/my_ansible_nt_04_01
+
+
+--------------------------
+CREATING DEPLOYMENT
+Create deploy.yml with following content
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+ name: jenkins-deploy
+spec:
+ replicas: 2
+ minReadySeconds: 2
+ strategy:
+ type: RollingUpdate
+ rollingUpdate:
+ maxUnavailable: 1
+ maxSurge: 1
+ template:
+ metadata:
+ labels:
+app:jenkins
+
+
+---------------------------
+
+
+
+CREATING DEPLOYMENT
+kubectl create -f deploy.yml
+kubectl describe deploy myjavaapp-deploy
+kubectl get rs
+kubectl describe rs
+kubectl get deploy
+kubectl delete deploy/myjavaapp-deploy
+kubectl delete rs/myjavaapp-deploy-6858bf488c
+
+-----------------------------------
+
+ROLLING UPDATE TO THE DEPLOYMENT
+kubectl apply -f deploy.yml --record
+kubectl rollout status deployments myjavaapp-deploy
+kubectl get deploy myjavaapp-deploy
+kubectl rollout history deployments myjavaapp-deploy
+kubectl get rs
+-----------------------------
+UNDO ROLLED back
+kubectl describe deploy myjavaapp-deploy
+kubectl rollout undo deployment myjavaapp-deploy --to-revision=1
+kubectl get deploy
+kubectl rollout status deployments myjavaapp-deploy
+kubectl rollout history deployments myapp-deploy
+--------------------------
+For Updating:
+kubectl --record deployment.apps/myjavaapp-deploy set image
+deployment.v1.apps/myjavaapp-deploy
+myjavaapp-container=maha4iac/myonlineapp25oct21:2
+kubectl rollout status deployments myjavaapp-deploy
+kubectl rollout history deployments myjavaapp-deploy
+---------------------------

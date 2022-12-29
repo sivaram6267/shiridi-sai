@@ -1,0 +1,114 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: shopfront-app
+  labels:
+    app: shopfront
+spec:
+  containers:
+    - name: shopfront-app
+      image: sivaram6267/micro:shopfront
+      args:
+        - "-text=shopfront"
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: shopfront-service
+spec:
+  selector:
+    app: shopfront
+  ports:
+    - port: 5678 # Default port for image
+
+$ kubectl apply -f shopfront.yaml
+------------------------------------------------------------------------------
+kind: Pod
+apiVersion: v1
+metadata:
+  name: products-app
+  labels:
+    app: products
+spec:
+  containers:
+    - name: products-app
+      image: sivaram6267/micro:products
+      args:
+        - "-text=products"
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: proucts-service
+spec:
+  selector:
+    app: proucts
+  ports:
+    - port: 5678 # Default port for image
+
+
+
+$ kubectl products -f proucts.yaml
+-------------------------------------------------------------------------------------
+kind: Pod
+apiVersion: v1
+metadata:
+  name: shopmanager-app
+  labels:
+    app: shopmanger
+spec:
+  containers:
+    - name: shopmanager-app
+      image: sivaram6267/micro:stockmanager
+      args:
+        - "-text=shopmanger"
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: shopmanager-service
+spec:
+  selector:
+    app: shopmanager
+  ports:
+    - port: 5678 # Default port for image
+
+
+
+$ kubectl shopmanger -f proucts.yaml
+
+
+
+
+--------------------------------------------------------------------------------------
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: example-ingress
+  annotations:
+    ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - http:
+      paths:
+        - path: /proucts 
+          backend:
+            serviceName: proucts-service
+            servicePort: 5678
+        - path: /shopfront
+          frontend:
+            serviceName: shopfront-service
+            servicePort: 5678
+        - path: /shopmanager
+          backend:
+            serviceName: shopmnager-service
+            servicePort: 5678
+
+
+kubectl create -f ingress.yaml

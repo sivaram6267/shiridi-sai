@@ -1,0 +1,81 @@
+sudo su root  
+1  cd /
+    2  clear
+    3  yum install java -y
+    4  java -version
+    5  clear
+    6  cd /opt/
+    7  ls
+    8  wget https://dlcdn.apache.org/maven/maven-3/3.8.6/binaries/apache-maven-3.8.6-bin.tar.gz
+    9  ls
+   10  tar -xzvf apache-maven-3.8.6-bin.tar.gz
+   11  ls
+   12  cd apache-maven-3.8.6/
+   13  ls
+   14  pwd
+   15  clear
+   export JAVA_HOME="/usr/lib/jvm/java-17-amazon-corretto.x86_64"
+   export PATH=$JAVA_HOME/bin:$PATH
+   export M2_HOME="/opt/apache-maven-3.8.6"
+   export PATH=$M2_HOME/bin:$PATH
+   20  echo $PATH
+export JAVA_HOME="/usr/lib/jvm/java-11-openjdk-11.0.16.0.8-1.amzn2.0.1.x86_64"
+   21  cd ..
+   22  wget https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.81/bin/apache-tomcat-8.5.81.tar.gz
+   23  ls
+   24  tar -xzvf apache-tomcat-8.5.81.tar.gz
+   25  ls
+   26  mv apache-tomcat-8.5.81 tomcat
+   27  ls
+   28  cd tomcat/
+   29  cd webapps/
+   30  cd manager/
+   31  cd META-INF/
+   32  ls
+   33  vi context.xml
+   34  cd ..
+   35  cd ..
+   36  cd ..
+   37  ls
+   38  cd conf/
+   39  vi tomcat-users.xml
+   40  cd ..
+   41  cd bin/
+   42  ./shutdown.sh
+   43  ./startup.sh
+   44  cd /
+   45  clear
+   46  yum install git -y
+   47  clear
+   48  git clone https://github.com/shiridivicky225/war-zone.git
+   49  ls
+   50  cd war-zone/
+   51  ls
+   52  mvn --version
+   53  mvn clean
+   54  mvn compile
+   55  mvn test
+   56  mvn package
+   57  mvn install
+   58  ls
+   59  cd target/
+   60  ls
+   61  cp employee-0.0.1-SNAPSHOT.war /opt/tomcat/webapps/
+   62  ls
+   63  clear
+   64  cd /
+   65  cd opt/tomcat/
+   66  ls
+   67  cd webapps/
+   68  ls
+   69  cd /
+   70  cd war-zone/
+   71  cd target/
+   72  ls
+   73  cp employee-0.0.1-SNAPSHOT.war.original /opt/tomcat/webapps/
+   74  cd /
+   75  cd opt/tomcat/webapps/
+   76  ls
+   77
+   78  clear
+   79  history

@@ -1,0 +1,63 @@
+FROM mcr.microsoft.com/dotnet/aspnet:5.0-buster-slim AS base
+WORKDIR /app
+EXPOSE 80
+EXPOSE 443
+ 
+FROM mcr.microsoft.com/dotnet/sdk:5.0-buster-slim AS build
+WORKDIR /src
+# Copy csproj and restore as distinct layers
+COPY *.csproj ./
+RUN dotnet restore
+COPY . ./
+WORKDIR /src
+RUN dotnet build "BHRUGEN MVC.csproj" -c Release -o /app/build
+ 
+FROM build AS publish
+RUN dotnet publish "BHRUGEN MVC.csproj" -c Release -o /app/publish
+ 
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
+ 
+ENTRYPOINT ["dotnet", "BHRUGEN MVC.dll"]
+
+------------------------------------------------------------------------------------------
+FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS base
+WORKDIR /project
+EXPOSE 80
+EXPOSE 443
+FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
+WORKDIR /src
+COPY ["/SollisHealth.Appointment/SollisHealth.Appointment/SollisHealth.Appointment.csproj", "SollisHealth.Appointment/"]
+RUN dotnet restore "SollisHealth.Appointment/SollisHealth.Appointment.csproj"
+COPY . .
+WORKDIR "/src/SollisHealth.Appointment/SollisHealth.Appointment"
+RUN dotnet build "SollisHealth.Appointment.csproj" -c Release -o /Project/build
+FROM build AS publish
+RUN dotnet publish "SollisHealth.Appointment.csproj" -c Release -o /project/publish
+FROM base AS final
+WORKDIR /project
+COPY --from=publish /project/publish .
+ENTRYPOINT ["dotnet", "SollisHealth.Appointment.dll"]
+
+
+--------------------------------------------\
+
+FROM mcr.microsoft.com/dotnet/runtime:5.0 AS base
+WORKDIR /app
+
+FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
+WORKDIR /src
+COPY ["FileProcessSvcPOC/FileProcessSvcPOC.csproj", "FileProcessSvcPOC/"]
+RUN dotnet restore "FileProcessSvcPOC/FileProcessSvcPOC.csproj"
+COPY . .
+WORKDIR "/src/FileProcessSvcPOC"
+RUN dotnet build "FileProcessSvcPOC.csproj" -c Release -o /app/build
+
+FROM build AS publish
+RUN dotnet publish "FileProcessSvcPOC.csproj" -c Release -o /app/publish
+
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
+ENTRYPOINT ["dotnet", "FileProcessSvcPOC.dll"]
